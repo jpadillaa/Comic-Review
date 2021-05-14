@@ -1,8 +1,14 @@
+import enum
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date
 from apirest import ma, db
+
+class IdiomaCategoria(str, enum.Enum):
+    EN = "Inglés"
+    ES = "Español"
+    JP = "Japones"
 
 '''
 Modelos
@@ -29,13 +35,13 @@ class Admin(db.Model):
 class Publicacion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     capitulo = db.Column(db.String(100))
-    # fecha_publicacion = db.Column(db.DateTime(), default=datetime.now)
+    fecha_publicacion = db.Column(db.DateTime(), default = datetime.now)
     titulo = db.Column(db.String(100))
     autor = db.Column(db.String(100))
     categoria = db.Column(db.String(100))
     descripcion = db.Column(db.String(280))
     review = db.Column(db.String(280))
-    idioma = db.Column(db.String(50))
+    idioma = db.Column(db.Enum(IdiomaCategoria))
     instagram = db.Column(db.String(200))
     admin_publicacion = db.Column(db.String(100), db.ForeignKey('admin.email'), nullable = False)
 
@@ -54,7 +60,7 @@ class PublicacionSchema(ma.Schema):
     Representa el schema de un concurso
     '''
     class Meta:
-        fields = ("id", "capitulo", "titulo", "autor", "categoria", "descripcion", "idioma", "instagram")
+        fields = ("id", "capitulo", "fecha_publicacion", "titulo", "autor", "categoria", "descripcion", "review", "idioma", "instagram")
 
 admin_schema = AdminSchema()
 publicacion_schema = PublicacionSchema()
