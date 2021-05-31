@@ -13,7 +13,7 @@ Realice las siguientes tareas para montar su ambiente de desarrollo.
 
 3. (OPCIONAL) Instalar en VSCode el linter de preferencia para el ambiente virtual. De esta forma podrá saber mejor si está cometiendo algún error con alguna librería. Para más información siga el siguiente [enlace](https://medium.com/@aswens0276/vscode-pylint-setup-and-settings-for-python-flask-with-sqlalchemy-7ade0f14f321)
 
-4. Cree una base de datos en postgres (motor previamente instalado). Algunos comandos que  que le pueden ayudar a crer la BD son:
+4. Cree una base de datos en postgres (motor previamente instalado). Algunos comandos que  que le pueden ayudar a crear la BD son:
     ```sql
     CREATE USER apirest;
     CREATE DATABASE api OWNER apirest;
